@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { 
@@ -15,11 +16,11 @@ export const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const quickLinks = [
-    { name: 'Inicio', href: '#inicio' },
-    { name: 'Productos', href: '#productos' },
-    { name: 'Galería', href: '#galeria' },
-    { name: 'Ubicación', href: '#ubicacion' },
-    { name: 'Nosotros', href: '#nosotros' },
+    { name: 'Inicio', href: '/' },
+    { name: 'Productos', href: '/productos' },
+    { name: 'Galería', href: '/galeria' },
+    { name: 'Ubicación', href: '/ubicacion' },
+    { name: 'Nosotros', href: '/nosotros' },
   ];
 
   const services = [
@@ -95,12 +96,12 @@ export const Footer = () => {
             <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.name}>
-                  <a
-                    href={link.href}
+                  <Link
+                    to={link.href}
                     className="text-muted-foreground hover:text-accent transition-colors duration-300 text-sm"
                   >
                     {link.name}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -191,13 +192,14 @@ export const GallerySection = () => {
               Únete a más de 500 clientes satisfechos que han confiado en nosotros 
               para crear experiencias inolvidables.
             </p>
-            <Button 
-              size="lg"
-              className="bg-gradient-accent hover:scale-105 transition-all duration-300 glow-accent"
-              onClick={() => document.getElementById('productos')?.scrollIntoView({ behavior: 'smooth' })}
-            >
-              Cotizar Mi Evento
-            </Button>
+            <Link to="/productos">
+              <Button 
+                size="lg"
+                className="bg-gradient-accent hover:scale-105 transition-all duration-300 glow-accent"
+              >
+                Cotizar Mi Evento
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

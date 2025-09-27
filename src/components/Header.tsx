@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ShoppingCart, Menu, X } from 'lucide-react';
 import { CartModal } from './CartModal';
@@ -10,34 +11,45 @@ interface HeaderProps {
 
 export const Header = ({ cartItemsCount, onCartOpen }: HeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
 
   const navLinks = [
-    { href: '#inicio', label: 'Inicio' },
-    { href: '#productos', label: 'Productos' },
-    { href: '#galeria', label: 'Galería' },
-    { href: '#ubicacion', label: '¿Dónde estamos?' },
-    { href: '#nosotros', label: '¿Quiénes somos?' },
+    { href: '/', label: 'Inicio' },
+    { href: '/productos', label: 'Productos' },
+    { href: '/galeria', label: 'Galería' },
+    { href: '/ubicacion', label: '¿Dónde estamos?' },
+    { href: '/nosotros', label: '¿Quiénes somos?' },
   ];
+
+  const isActiveRoute = (href: string) => {
+    if (href === '/') {
+      return location.pathname === '/';
+    }
+    return location.pathname === href;
+  };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <div className="text-2xl font-bold bg-gradient-hero bg-clip-text text-transparent">
+          <Link to="/" className="text-2xl font-bold bg-gradient-hero bg-clip-text text-transparent">
             RECOVA RENTALS
-          </div>
+          </Link>
 
-          {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.href}
-                href={link.href}
-                className="text-foreground hover:text-primary transition-colors duration-300 font-medium"
+                to={link.href}
+                className={`transition-colors duration-300 font-medium ${
+                  isActiveRoute(link.href)
+                    ? 'text-accent border-b-2 border-accent'
+                    : 'text-foreground hover:text-primary'
+                }`}
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </nav>
 
@@ -74,14 +86,18 @@ export const Header = ({ cartItemsCount, onCartOpen }: HeaderProps) => {
           <nav className="md:hidden mt-4 pb-4 border-t border-border pt-4 animate-fade-in">
             <div className="flex flex-col space-y-3">
               {navLinks.map((link) => (
-                <a
+                <Link
                   key={link.href}
-                  href={link.href}
+                  to={link.href}
                   onClick={() => setIsMenuOpen(false)}
-                  className="text-foreground hover:text-primary transition-colors duration-300 font-medium py-2"
+                  className={`transition-colors duration-300 font-medium py-2 ${
+                    isActiveRoute(link.href)
+                      ? 'text-accent'
+                      : 'text-foreground hover:text-primary'
+                  }`}
                 >
                   {link.label}
-                </a>
+                </Link>
               ))}
             </div>
           </nav>

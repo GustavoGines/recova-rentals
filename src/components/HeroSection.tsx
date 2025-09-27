@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Play, Star, Users, Award } from 'lucide-react';
 import heroImage from '@/assets/hero-image.jpg';
@@ -69,21 +70,23 @@ export const HeroSection = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button 
-              size="lg" 
-              className="bg-gradient-accent hover:scale-105 transition-all duration-300 glow-accent text-lg px-8 py-3"
-              onClick={() => document.getElementById('productos')?.scrollIntoView({ behavior: 'smooth' })}
-            >
-              Ver Nuestros Equipos
-            </Button>
-            <Button 
-              variant="outline" 
-              size="lg"
-              className="border-primary text-primary hover:bg-primary hover:text-primary-foreground text-lg px-8 py-3 transition-all duration-300"
-              onClick={() => document.getElementById('galeria')?.scrollIntoView({ behavior: 'smooth' })}
-            >
-              Ver Galería de Eventos
-            </Button>
+            <Link to="/productos">
+              <Button 
+                size="lg" 
+                className="bg-gradient-accent hover:scale-105 transition-all duration-300 glow-accent text-lg px-8 py-3"
+              >
+                Ver Nuestros Equipos
+              </Button>
+            </Link>
+            <Link to="/galeria">
+              <Button 
+                variant="outline" 
+                size="lg"
+                className="border-primary text-primary hover:bg-primary hover:text-primary-foreground text-lg px-8 py-3 transition-all duration-300"
+              >
+                Ver Galería de Eventos
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

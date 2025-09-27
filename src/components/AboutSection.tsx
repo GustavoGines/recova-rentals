@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -192,9 +193,10 @@ export const AboutSection = () => {
           <Button 
             size="lg"
             className="bg-gradient-accent hover:scale-105 transition-all duration-300 glow-accent"
-            onClick={() => document.getElementById('productos')?.scrollIntoView({ behavior: 'smooth' })}
           >
-            Conoce Nuestros Servicios
+            <Link to="/productos">
+              Conoce Nuestros Servicios
+            </Link>
           </Button>
         </div>
       </div>

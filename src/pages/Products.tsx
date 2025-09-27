@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { Header } from '@/components/Header';
-import { HeroSection } from '@/components/HeroSection';
+import { ProductsSection } from '@/components/ProductsSection';
 import { Footer } from '@/components/Footer';
 import { CartModal, type CartItem } from '@/components/CartModal';
 
-const Index = () => {
+const Products = () => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
 
@@ -39,8 +39,8 @@ const Index = () => {
         onCartOpen={() => setIsCartOpen(true)}
       />
       
-      <main>
-        <HeroSection />
+      <main className="pt-20">
+        <ProductsSection onAddToCart={addToCart} />
       </main>
       
       <Footer />
@@ -56,4 +56,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default Products;
