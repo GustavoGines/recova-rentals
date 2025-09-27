@@ -15,7 +15,7 @@
     --popover: 240 5% 6%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 263 70% 50.4%;
+    --primary: 258 65% 25%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 240 4.8% 15.9%;
@@ -32,7 +32,7 @@
 
     --border: 240 3.7% 15.9%;
     --input: 240 3.7% 15.9%;
-    --ring: 263 70% 50.4%;
+    --ring: 258 65% 25%;
 
     /* Event-specific colors */
     --neon-blue: 200 100% 50%;
@@ -41,13 +41,13 @@
     --electric-cyan: 180 100% 50%;
     
     /* Gradients for dynamic effects */
-    --gradient-hero: linear-gradient(135deg, hsl(263 70% 50.4%), hsl(310 75% 60%), hsl(200 100% 50%));
-    --gradient-card: linear-gradient(145deg, hsl(240 10% 3.9%), hsl(240 5% 8%));
-    --gradient-accent: linear-gradient(90deg, hsl(310 75% 60%), hsl(280 100% 70%));
-    --gradient-neon: linear-gradient(45deg, hsl(200 100% 50%), hsl(180 100% 50%));
+    --gradient-hero: linear-gradient(135deg, hsl(258 65% 25%), hsl(258 65% 35%), hsl(258 65% 45%));
+    --gradient-card: linear-gradient(145deg, hsl(258 65% 15%), hsl(258 65% 20%));
+    --gradient-accent: linear-gradient(90deg, hsl(258 65% 30%), hsl(258 65% 40%));
+    --gradient-neon: linear-gradient(45deg, hsl(258 65% 35%), hsl(258 65% 45%));
     
     /* Glow effects */
-    --glow-primary: 0 0 30px hsl(263 70% 50.4% / 0.5);
+    --glow-primary: 0 0 30px hsl(258 65% 25% / 0.5);
     --glow-accent: 0 0 25px hsl(310 75% 60% / 0.4);
     --glow-neon: 0 0 40px hsl(200 100% 50% / 0.3);
 
@@ -80,7 +80,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 3.9%;
 
-    --primary: 263 70% 50.4%;
+    --primary: 258 65% 25%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 240 4.8% 95.9%;
@@ -97,7 +97,7 @@
 
     --border: 240 5.9% 90%;
     --input: 240 5.9% 90%;
-    --ring: 263 70% 50.4%;
+    --ring: 258 65% 25%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
