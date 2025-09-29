@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { TopBanner } from '@/components/TopBanner';
 import { Header } from '@/components/Header';
 import { ProductsSection } from '@/components/ProductsSection';
 import { Footer } from '@/components/Footer';
@@ -34,12 +35,13 @@ const Products = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <TopBanner />
       <Header 
         cartItemsCount={cartItemsCount}
         onCartOpen={() => setIsCartOpen(true)}
       />
       
-      <main style={{ paddingTop: '80px' }}>
+      <main style={{ paddingTop: '140px' }}>
         <ProductsSection onAddToCart={addToCart} />
       </main>
       
