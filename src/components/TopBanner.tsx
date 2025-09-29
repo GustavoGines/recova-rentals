@@ -2,19 +2,22 @@ import { Sun, Instagram } from 'lucide-react';
 
 export const TopBanner = () => {
   return (
-    <div className="fixed top-0 left-0 right-0 z-[60] bg-gradient-to-r from-primary/90 via-primary to-primary/90 text-white py-3 px-4 shadow-lg glow-primary animate-glow-pulse">
+    <div className="fixed top-0 left-0 right-0 z-[60] bg-gradient-to-r from-primary/95 via-primary to-primary/95 text-white py-4 px-4 shadow-lg glow-primary animate-glow-pulse">
       <div className="container mx-auto flex items-center justify-between">
         {/* Left side - Logo and Company Name */}
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-6">
           {/* Logo placeholder - you can replace with actual logo */}
-          <div className="bg-white/20 backdrop-blur-sm rounded-lg px-3 py-1.5 border border-white/30 glow-accent">
+          <div className="bg-white/20 backdrop-blur-sm rounded-lg px-3 py-2 border border-white/30 glow-accent">
             <span className="text-white font-bold text-sm tracking-wide">LOGO</span>
           </div>
           
-          {/* Company name */}
-          <div className="hidden sm:block">
-            <h1 className="text-lg font-bold tracking-wider bg-gradient-hero bg-clip-text text-transparent animate-glow-pulse">
-              RECOVA RENTALS
+          {/* Company name - prominente como en la referencia */}
+          <div className="flex items-center">
+            <h1 className="text-2xl md:text-3xl font-black tracking-wider text-white drop-shadow-lg">
+              RECOVA
+            </h1>
+            <h1 className="text-2xl md:text-3xl font-black tracking-wider text-white drop-shadow-lg ml-2">
+              RENTALS
             </h1>
           </div>
         </div>
