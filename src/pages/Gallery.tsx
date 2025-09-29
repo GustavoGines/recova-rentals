@@ -12,7 +12,7 @@ const Gallery = () => {
         onCartOpen={() => {}}
       />
       
-      <main className="pt-20">
+      <main style={{ paddingTop: '140px' }}>
         <GallerySection />
       </main>
       

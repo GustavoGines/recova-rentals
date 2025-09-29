@@ -41,7 +41,7 @@ const Products = () => {
         onCartOpen={() => setIsCartOpen(true)}
       />
       
-      <main className="pt-20">
+      <main style={{ paddingTop: '140px' }}>
         <ProductsSection onAddToCart={addToCart} />
       </main>
       

@@ -29,7 +29,7 @@ export const Header = ({ cartItemsCount, onCartOpen }: HeaderProps) => {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
+    <header className="fixed left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border" style={{ top: '60px' }}>
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}

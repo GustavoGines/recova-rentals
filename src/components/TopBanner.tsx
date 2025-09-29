@@ -2,7 +2,7 @@ import { Sun, Instagram } from 'lucide-react';
 
 export const TopBanner = () => {
   return (
-    <div className="bg-gradient-to-r from-primary/90 via-primary to-primary/90 text-white py-3 px-4 shadow-lg">
+    <div className="fixed top-0 left-0 right-0 z-[60] bg-gradient-to-r from-primary/90 via-primary to-primary/90 text-white py-3 px-4 shadow-lg">
       <div className="container mx-auto flex items-center justify-between">
         {/* Left side - Logo and Company Name */}
         <div className="flex items-center space-x-4">

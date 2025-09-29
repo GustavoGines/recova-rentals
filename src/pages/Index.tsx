@@ -41,7 +41,7 @@ const Index = () => {
         onCartOpen={() => setIsCartOpen(true)}
       />
       
-      <main>
+      <main style={{ paddingTop: '140px' }}>
         <HeroSection />
       </main>
       
