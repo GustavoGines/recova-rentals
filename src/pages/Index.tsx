@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { TopBanner } from '@/components/TopBanner';
 import { Header } from '@/components/Header';
 import { HeroSection } from '@/components/HeroSection';
 import { Footer } from '@/components/Footer';
@@ -34,6 +35,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <TopBanner />
       <Header 
         cartItemsCount={cartItemsCount}
         onCartOpen={() => setIsCartOpen(true)}
