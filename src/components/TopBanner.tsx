@@ -1,56 +1,56 @@
-import { Sun, Instagram } from 'lucide-react';
-import { useTheme } from 'next-themes';
-import { useEffect, useState } from 'react';
+import { Sun, Instagram } from "lucide-react";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
+
+import logoMark from "@/assets/rentalsblanco-1.png";
+import wordmark from "@/assets/rentalsblanco-2.png";
 
 export const TopBanner = () => {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  useEffect(() => setMounted(true), []);
+  if (!mounted) return null;
 
-  const toggleTheme = () => {
-    setTheme(theme === 'dark' ? 'light' : 'dark');
-  };
-
-  if (!mounted) {
-    return null;
-  }
+  const toggleTheme = () => setTheme(theme === "dark" ? "light" : "dark");
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-[50] bg-gradient-to-r from-primary/95 via-primary to-primary/95 text-white py-2 px-4 shadow-lg glow-primary animate-glow-pulse border-b border-primary/30">
-      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-pulse"></div>
-      <div className="container mx-auto flex items-center justify-between relative z-10">
-        {/* Left side - Logo and Company Name */}
-        <div className="flex items-center space-x-6">
-          {/* Logo placeholder - you can replace with actual logo */}
-          <div className="bg-white/20 backdrop-blur-sm rounded-lg px-3 py-2 border border-white/30 glow-accent animate-pulse shadow-lg shadow-primary/50">
-            <span className="text-white font-bold text-sm tracking-wide drop-shadow-lg">LOGO</span>
+    <div className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-primary/95 via-primary to-primary/95 text-white h-12 md:h-14 px-4 border-b border-primary/30 shadow-lg">
+      {/* brillo */}
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent animate-[pulse_4.5s_ease-in-out_infinite]" />
+
+      {/* contenido centrado verticalmente */}
+      <div className="container mx-auto h-full flex items-center justify-between relative z-10">
+        {/* Izquierda: logo + wordmark */}
+        <div className="flex items-center gap-6">
+          <div className="bg-white/20 backdrop-blur-sm rounded-lg px-2 py-1 border border-white/30 glow-accent animate-pulse shadow-lg shadow-primary/50">
+            <img src={logoMark} alt="Recova Rentals - logo" width={130} height={30} />
           </div>
-          
-          {/* Company name - prominente como en la referencia */}
-          <div className="flex items-center">
-            <h1 className="text-xl md:text-2xl font-black tracking-wider text-white drop-shadow-lg glow-accent animate-glow-pulse">
-              RECOVA
-            </h1>
-            <h1 className="text-xl md:text-2xl font-black tracking-wider text-white drop-shadow-lg ml-2 glow-accent animate-glow-pulse">
-              RENTALS
-            </h1>
+          <div className="flex items-center leading-none whitespace-nowrap">
+            <img src={wordmark} alt="RECOVA RENTALS" width={105} height={50} className="translate-y-[3px] md:translate-y-[4px]" />
           </div>
         </div>
 
-        {/* Right side - Social icons */}
-        <div className="flex items-center space-x-3">
-          <button 
+        {/* Derecha: acciones */}
+        <div className="flex items-center gap-2">
+          <button
             onClick={toggleTheme}
-            className="hover:bg-white/20 p-2 rounded-full transition-all duration-300 hover:glow-accent hover:scale-110 shadow-lg shadow-primary/30"
+            className="p-1.5 rounded-full hover:bg-white/20 transition-transform duration-200 hover:scale-110"
+            aria-label="Cambiar tema"
+            title="Cambiar tema"
           >
-            <Sun className="h-4 w-4 glow-accent" />
+            <Sun className="h-4 w-4" />
           </button>
-          <button className="hover:bg-white/20 p-2 rounded-full transition-all duration-300 hover:glow-accent hover:scale-110 shadow-lg shadow-primary/30">
-            <Instagram className="h-4 w-4 glow-accent" />
-          </button>
+          <a
+            href="https://www.instagram.com/recovarentals/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-1.5 rounded-full hover:bg-white/20 transition-transform duration-200 hover:scale-110"
+            aria-label="Instagram Recova Rentals"
+            title="Instagram Recova Rentals"
+          >
+            <Instagram className="h-4 w-4" />
+          </a>
         </div>
       </div>
     </div>
