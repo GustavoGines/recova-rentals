@@ -1,22 +1,31 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { X, Plus, ShoppingCart, Play, Zap, Volume2, Layers } from 'lucide-react';
+import { X, Plus, ShoppingCart, Play, Zap, Volume2, Layers, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import type { CartItem } from './CartModal';
 
-// Import images
+// Import original images
 import pantallasLED from '@/assets/pantallas-led.jpg';
 import iluminacion from '@/assets/iluminacion.jpg';
 import lasers from '@/assets/lasers.jpg';
 import sonido from '@/assets/sonido.jpg';
 import escenarios from '@/assets/escenarios.jpg';
 
-// Import new event images
+// Import event images
 import ledScreensEvent from '@/assets/led-screens-event.png';
 import laserShowEvent from '@/assets/laser-show-event.png';
 import lightingSetupEvent from '@/assets/lighting-setup-event.png';
 import stageProductionEvent from '@/assets/stage-production-event.png';
+
+// Import new images from user uploads
+import lightingSetup2 from '@/assets/lighting-setup-2.jpg';
+import ledCeilingSetup from '@/assets/led-ceiling-setup.jpg';
+import laserShowCeiling from '@/assets/laser-show-ceiling.jpg';
+import stageBlueLight from '@/assets/stage-blue-lighting.jpg';
+import discoBallsSetup from '@/assets/disco-balls-setup.jpg';
+import goldenLaserEffects from '@/assets/golden-laser-effects.jpg';
 
 interface Product {
   id: string;
@@ -41,6 +50,13 @@ interface InteractiveImage {
   title: string;
   image: string;
   hotspots: Hotspot[];
+}
+
+interface ImageCategory {
+  id: string;
+  title: string;
+  description: string;
+  images: InteractiveImage[];
 }
 
 interface ProductsSectionProps {
@@ -92,123 +108,319 @@ const products: Product[] = [
   },
 ];
 
-const interactiveImages: InteractiveImage[] = [
+const imageCategories: ImageCategory[] = [
   {
-    id: 'led-screens-setup',
-    title: 'Pantallas LED Premium en Acción',
-    image: ledScreensEvent,
-    hotspots: [
+    id: 'pantallas-led',
+    title: 'Pantallas LED',
+    description: 'Sistemas de pantallas LED de alta definición para eventos',
+    images: [
       {
-        id: 'led-panels',
-        x: 45,
-        y: 20,
-        product: products[0],
-        icon: <Play className="h-5 w-5" />
+        id: 'led-screens-setup',
+        title: 'Pantallas LED Premium en Acción',
+        image: ledScreensEvent,
+        hotspots: [
+          {
+            id: 'led-panels',
+            x: 45,
+            y: 20,
+            product: products[0],
+            icon: <Play className="h-5 w-5" />
+          },
+          {
+            id: 'stage-lighting',
+            x: 75,
+            y: 35,
+            product: products[1],
+            icon: <Zap className="h-5 w-5" />
+          },
+          {
+            id: 'sound-equipment',
+            x: 25,
+            y: 60,
+            product: products[3],
+            icon: <Volume2 className="h-5 w-5" />
+          }
+        ]
       },
       {
-        id: 'stage-lighting',
-        x: 75,
-        y: 35,
-        product: products[1],
-        icon: <Zap className="h-5 w-5" />
-      },
-      {
-        id: 'sound-equipment',
-        x: 25,
-        y: 60,
-        product: products[3],
-        icon: <Volume2 className="h-5 w-5" />
+        id: 'led-ceiling-display',
+        title: 'Pantallas LED de Techo Interactivas',
+        image: ledCeilingSetup,
+        hotspots: [
+          {
+            id: 'ceiling-led-panels',
+            x: 50,
+            y: 30,
+            product: products[0],
+            icon: <Play className="h-5 w-5" />
+          },
+          {
+            id: 'atmospheric-lighting',
+            x: 70,
+            y: 60,
+            product: products[1],
+            icon: <Zap className="h-5 w-5" />
+          },
+          {
+            id: 'party-crowd-setup',
+            x: 30,
+            y: 70,
+            product: products[3],
+            icon: <Volume2 className="h-5 w-5" />
+          }
+        ]
       }
     ]
   },
   {
-    id: 'laser-light-show',
-    title: 'Espectáculo de Lásers y Luces',
-    image: laserShowEvent,
-    hotspots: [
+    id: 'iluminacion',
+    title: 'Iluminación',
+    description: 'Sistemas de iluminación profesional para crear ambientes únicos',
+    images: [
       {
-        id: 'laser-beams',
-        x: 60,
-        y: 25,
-        product: products[2],
-        icon: <Zap className="h-5 w-5" />
+        id: 'lighting-production',
+        title: 'Producción de Iluminación Profesional',
+        image: lightingSetupEvent,
+        hotspots: [
+          {
+            id: 'chandelier-lights',
+            x: 50,
+            y: 30,
+            product: products[1],
+            icon: <Zap className="h-5 w-5" />
+          },
+          {
+            id: 'structural-truss',
+            x: 25,
+            y: 10,
+            product: products[4],
+            icon: <Layers className="h-5 w-5" />
+          },
+          {
+            id: 'led-wall',
+            x: 70,
+            y: 50,
+            product: products[0],
+            icon: <Play className="h-5 w-5" />
+          }
+        ]
       },
       {
-        id: 'moving-lights',
-        x: 30,
-        y: 15,
-        product: products[1],
-        icon: <Zap className="h-5 w-5" />
+        id: 'premium-lighting-setup',
+        title: 'Configuración Premium de Iluminación',
+        image: lightingSetup2,
+        hotspots: [
+          {
+            id: 'neon-backdrop',
+            x: 65,
+            y: 40,
+            product: products[0],
+            icon: <Play className="h-5 w-5" />
+          },
+          {
+            id: 'mirror-balls-ceiling',
+            x: 50,
+            y: 20,
+            product: products[1],
+            icon: <Zap className="h-5 w-5" />
+          },
+          {
+            id: 'stage-platform',
+            x: 50,
+            y: 75,
+            product: products[4],
+            icon: <Layers className="h-5 w-5" />
+          }
+        ]
       },
       {
-        id: 'stage-base',
-        x: 50,
-        y: 80,
-        product: products[4],
-        icon: <Layers className="h-5 w-5" />
+        id: 'disco-balls-installation',
+        title: 'Instalación de Bolas de Espejos',
+        image: discoBallsSetup,
+        hotspots: [
+          {
+            id: 'mirror-ball-array',
+            x: 50,
+            y: 35,
+            product: products[1],
+            icon: <Zap className="h-5 w-5" />
+          },
+          {
+            id: 'lighting-equipment-cases',
+            x: 70,
+            y: 70,
+            product: products[3],
+            icon: <Volume2 className="h-5 w-5" />
+          },
+          {
+            id: 'truss-structure',
+            x: 30,
+            y: 15,
+            product: products[4],
+            icon: <Layers className="h-5 w-5" />
+          }
+        ]
       }
     ]
   },
   {
-    id: 'lighting-production',
-    title: 'Producción de Iluminación Profesional',
-    image: lightingSetupEvent,
-    hotspots: [
+    id: 'lasers',
+    title: 'Lásers',
+    description: 'Efectos láser espectaculares para eventos memorables',
+    images: [
       {
-        id: 'chandelier-lights',
-        x: 50,
-        y: 30,
-        product: products[1],
-        icon: <Zap className="h-5 w-5" />
+        id: 'laser-light-show',
+        title: 'Espectáculo de Lásers y Luces',
+        image: laserShowEvent,
+        hotspots: [
+          {
+            id: 'laser-beams',
+            x: 60,
+            y: 25,
+            product: products[2],
+            icon: <Zap className="h-5 w-5" />
+          },
+          {
+            id: 'moving-lights',
+            x: 30,
+            y: 15,
+            product: products[1],
+            icon: <Zap className="h-5 w-5" />
+          },
+          {
+            id: 'stage-base',
+            x: 50,
+            y: 80,
+            product: products[4],
+            icon: <Layers className="h-5 w-5" />
+          }
+        ]
       },
       {
-        id: 'structural-truss',
-        x: 25,
-        y: 10,
-        product: products[4],
-        icon: <Layers className="h-5 w-5" />
+        id: 'laser-ceiling-effects',
+        title: 'Efectos Láser de Techo',
+        image: laserShowCeiling,
+        hotspots: [
+          {
+            id: 'ceiling-laser-grid',
+            x: 50,
+            y: 25,
+            product: products[2],
+            icon: <Zap className="h-5 w-5" />
+          },
+          {
+            id: 'stage-lighting-blue',
+            x: 50,
+            y: 60,
+            product: products[1],
+            icon: <Zap className="h-5 w-5" />
+          },
+          {
+            id: 'stage-backdrop',
+            x: 50,
+            y: 50,
+            product: products[0],
+            icon: <Play className="h-5 w-5" />
+          }
+        ]
       },
       {
-        id: 'led-wall',
-        x: 70,
-        y: 50,
-        product: products[0],
-        icon: <Play className="h-5 w-5" />
+        id: 'golden-laser-show',
+        title: 'Show de Lásers Dorados',
+        image: goldenLaserEffects,
+        hotspots: [
+          {
+            id: 'golden-laser-beams',
+            x: 60,
+            y: 30,
+            product: products[2],
+            icon: <Zap className="h-5 w-5" />
+          },
+          {
+            id: 'disco-ball-reflections',
+            x: 40,
+            y: 20,
+            product: products[1],
+            icon: <Zap className="h-5 w-5" />
+          },
+          {
+            id: 'event-stage',
+            x: 30,
+            y: 70,
+            product: products[4],
+            icon: <Layers className="h-5 w-5" />
+          }
+        ]
       }
     ]
   },
   {
-    id: 'complete-stage-production',
-    title: 'Producción Completa de Escenario',
-    image: stageProductionEvent,
-    hotspots: [
+    id: 'escenarios',
+    title: 'Escenarios',
+    description: 'Estructuras modulares y robustas para cualquier evento',
+    images: [
       {
-        id: 'ceiling-leds',
-        x: 50,
-        y: 15,
-        product: products[0],
-        icon: <Play className="h-5 w-5" />
+        id: 'complete-stage-production',
+        title: 'Producción Completa de Escenario',
+        image: stageProductionEvent,
+        hotspots: [
+          {
+            id: 'ceiling-leds',
+            x: 50,
+            y: 15,
+            product: products[0],
+            icon: <Play className="h-5 w-5" />
+          },
+          {
+            id: 'laser-effects',
+            x: 35,
+            y: 45,
+            product: products[2],
+            icon: <Zap className="h-5 w-5" />
+          },
+          {
+            id: 'stage-structure',
+            x: 65,
+            y: 70,
+            product: products[4],
+            icon: <Layers className="h-5 w-5" />
+          },
+          {
+            id: 'audio-system',
+            x: 80,
+            y: 55,
+            product: products[3],
+            icon: <Volume2 className="h-5 w-5" />
+          }
+        ]
       },
       {
-        id: 'laser-effects',
-        x: 35,
-        y: 45,
-        product: products[2],
-        icon: <Zap className="h-5 w-5" />
-      },
-      {
-        id: 'stage-structure',
-        x: 65,
-        y: 70,
-        product: products[4],
-        icon: <Layers className="h-5 w-5" />
-      },
-      {
-        id: 'audio-system',
-        x: 80,
-        y: 55,
-        product: products[3],
-        icon: <Volume2 className="h-5 w-5" />
+        id: 'blue-stage-lighting',
+        title: 'Escenario con Iluminación Azul',
+        image: stageBlueLight,
+        hotspots: [
+          {
+            id: 'blue-stage-lights',
+            x: 50,
+            y: 30,
+            product: products[1],
+            icon: <Zap className="h-5 w-5" />
+          },
+          {
+            id: 'projection-backdrop',
+            x: 50,
+            y: 45,
+            product: products[0],
+            icon: <Play className="h-5 w-5" />
+          },
+          {
+            id: 'stage-platform-structure',
+            x: 50,
+            y: 75,
+            product: products[4],
+            icon: <Layers className="h-5 w-5" />
+          }
+        ]
       }
     ]
   }
@@ -251,52 +463,79 @@ export const ProductsSection = ({ onAddToCart }: ProductsSectionProps) => {
           </p>
         </div>
 
-        {/* Interactive Images */}
-        <div className="space-y-8">
-          {interactiveImages.map((imageData) => (
-            <div key={imageData.id} className="relative group">
-              {/* Image Title */}
-              <h3 className="text-2xl font-bold text-primary mb-4 text-center">
-                {imageData.title}
-              </h3>
-              
-              {/* Interactive Image Container */}
-              <div className="relative w-full h-[60vh] md:h-[70vh] overflow-hidden rounded-2xl bg-gradient-card border border-border/50">
-                <img
-                  src={imageData.image}
-                  alt={imageData.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                
-                {/* Dark overlay for better hotspot visibility */}
-                <div className="absolute inset-0 bg-black/30" />
-                
-                {/* Hotspots */}
-                {imageData.hotspots.map((hotspot) => (
-                  <button
-                    key={hotspot.id}
-                    onClick={() => handleHotspotClick(hotspot)}
-                    className="absolute transform -translate-x-1/2 -translate-y-1/2 group/hotspot"
-                    style={{
-                      left: `${hotspot.x}%`,
-                      top: `${hotspot.y}%`,
-                    }}
-                  >
-                    {/* Animated pulse ring */}
-                    <div className="absolute inset-0 rounded-full animate-ping bg-primary/30 scale-150" />
-                    <div className="absolute inset-0 rounded-full animate-pulse bg-primary/20 scale-125" />
-                    
-                    {/* Hotspot button */}
-                    <div className="relative w-14 h-14 md:w-16 md:h-16 bg-primary/90 backdrop-blur-sm rounded-full border-2 border-white/30 flex items-center justify-center text-white shadow-lg glow-primary group-hover/hotspot:scale-110 group-hover/hotspot:bg-primary transition-all duration-300">
-                      {hotspot.icon}
-                    </div>
-                    
-                    {/* Hotspot label */}
-                    <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 px-3 py-1 bg-black/80 backdrop-blur-sm text-white text-sm rounded-lg opacity-0 group-hover/hotspot:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none">
-                      {hotspot.product.name}
-                    </div>
-                  </button>
-                ))}
+        {/* Image Categories with Carousel */}
+        <div className="space-y-16">
+          {imageCategories.map((category) => (
+            <div key={category.id} className="space-y-8">
+              {/* Category Header */}
+              <div className="text-center space-y-4">
+                <h3 className="text-3xl md:text-4xl font-bold text-primary">
+                  {category.title}
+                </h3>
+                <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                  {category.description}
+                </p>
+              </div>
+
+              {/* Carousel Container */}
+              <div className="relative">
+                <Carousel className="w-full">
+                  <CarouselContent className="-ml-2 md:-ml-4">
+                    {category.images.map((imageData) => (
+                      <CarouselItem key={imageData.id} className="pl-2 md:pl-4">
+                        <div className="relative group">
+                          {/* Image Title */}
+                          <h4 className="text-xl font-semibold text-foreground mb-4 text-center">
+                            {imageData.title}
+                          </h4>
+                          
+                          {/* Interactive Image Container */}
+                          <div className="relative w-full h-[60vh] md:h-[70vh] overflow-hidden rounded-2xl bg-gradient-card border border-border/50">
+                            <img
+                              src={imageData.image}
+                              alt={imageData.title}
+                              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                            />
+                            
+                            {/* Dark overlay for better hotspot visibility */}
+                            <div className="absolute inset-0 bg-black/30" />
+                            
+                            {/* Hotspots */}
+                            {imageData.hotspots.map((hotspot) => (
+                              <button
+                                key={hotspot.id}
+                                onClick={() => handleHotspotClick(hotspot)}
+                                className="absolute transform -translate-x-1/2 -translate-y-1/2 group/hotspot"
+                                style={{
+                                  left: `${hotspot.x}%`,
+                                  top: `${hotspot.y}%`,
+                                }}
+                              >
+                                {/* Animated pulse ring */}
+                                <div className="absolute inset-0 rounded-full animate-ping bg-primary/30 scale-150" />
+                                <div className="absolute inset-0 rounded-full animate-pulse bg-primary/20 scale-125" />
+                                
+                                {/* Hotspot button */}
+                                <div className="relative w-14 h-14 md:w-16 md:h-16 bg-primary/90 backdrop-blur-sm rounded-full border-2 border-white/30 flex items-center justify-center text-white shadow-lg glow-primary group-hover/hotspot:scale-110 group-hover/hotspot:bg-primary transition-all duration-300">
+                                  {hotspot.icon}
+                                </div>
+                                
+                                {/* Hotspot label */}
+                                <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 px-3 py-1 bg-black/80 backdrop-blur-sm text-white text-sm rounded-lg opacity-0 group-hover/hotspot:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none">
+                                  {hotspot.product.name}
+                                </div>
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  
+                  {/* Custom Navigation Buttons */}
+                  <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 bg-primary/90 backdrop-blur-sm border-primary/30 text-white hover:bg-primary glow-primary" />
+                  <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 bg-primary/90 backdrop-blur-sm border-primary/30 text-white hover:bg-primary glow-primary" />
+                </Carousel>
               </div>
             </div>
           ))}
