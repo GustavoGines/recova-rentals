@@ -12,6 +12,12 @@ import lasers from '@/assets/lasers.jpg';
 import sonido from '@/assets/sonido.jpg';
 import escenarios from '@/assets/escenarios.jpg';
 
+// Import new event images
+import ledScreensEvent from '@/assets/led-screens-event.png';
+import laserShowEvent from '@/assets/laser-show-event.png';
+import lightingSetupEvent from '@/assets/lighting-setup-event.png';
+import stageProductionEvent from '@/assets/stage-production-event.png';
+
 interface Product {
   id: string;
   name: string;
@@ -88,93 +94,121 @@ const products: Product[] = [
 
 const interactiveImages: InteractiveImage[] = [
   {
-    id: 'concert-stage',
-    title: 'Escenario de Concierto Completo',
-    image: pantallasLED,
+    id: 'led-screens-setup',
+    title: 'Pantallas LED Premium en Acción',
+    image: ledScreensEvent,
     hotspots: [
       {
-        id: 'led-screen',
-        x: 50,
-        y: 25,
+        id: 'led-panels',
+        x: 45,
+        y: 20,
         product: products[0],
         icon: <Play className="h-5 w-5" />
       },
       {
-        id: 'stage-lights',
+        id: 'stage-lighting',
+        x: 75,
+        y: 35,
+        product: products[1],
+        icon: <Zap className="h-5 w-5" />
+      },
+      {
+        id: 'sound-equipment',
         x: 25,
+        y: 60,
+        product: products[3],
+        icon: <Volume2 className="h-5 w-5" />
+      }
+    ]
+  },
+  {
+    id: 'laser-light-show',
+    title: 'Espectáculo de Lásers y Luces',
+    image: laserShowEvent,
+    hotspots: [
+      {
+        id: 'laser-beams',
+        x: 60,
+        y: 25,
+        product: products[2],
+        icon: <Zap className="h-5 w-5" />
+      },
+      {
+        id: 'moving-lights',
+        x: 30,
         y: 15,
         product: products[1],
         icon: <Zap className="h-5 w-5" />
       },
       {
-        id: 'sound-system',
-        x: 75,
-        y: 40,
-        product: products[3],
-        icon: <Volume2 className="h-5 w-5" />
-      }
-    ]
-  },
-  {
-    id: 'laser-show',
-    title: 'Show de Lásers y Efectos',
-    image: lasers,
-    hotspots: [
-      {
-        id: 'laser-system',
-        x: 60,
-        y: 30,
-        product: products[2],
-        icon: <Zap className="h-5 w-5" />
-      },
-      {
-        id: 'stage-structure',
-        x: 40,
-        y: 70,
+        id: 'stage-base',
+        x: 50,
+        y: 80,
         product: products[4],
         icon: <Layers className="h-5 w-5" />
       }
     ]
   },
   {
-    id: 'lighting-setup',
-    title: 'Configuración de Iluminación Avanzada',
-    image: iluminacion,
+    id: 'lighting-production',
+    title: 'Producción de Iluminación Profesional',
+    image: lightingSetupEvent,
     hotspots: [
       {
-        id: 'moving-lights',
-        x: 35,
-        y: 20,
+        id: 'chandelier-lights',
+        x: 50,
+        y: 30,
         product: products[1],
         icon: <Zap className="h-5 w-5" />
       },
       {
-        id: 'led-panels',
-        x: 65,
-        y: 35,
+        id: 'structural-truss',
+        x: 25,
+        y: 10,
+        product: products[4],
+        icon: <Layers className="h-5 w-5" />
+      },
+      {
+        id: 'led-wall',
+        x: 70,
+        y: 50,
         product: products[0],
         icon: <Play className="h-5 w-5" />
       }
     ]
   },
   {
-    id: 'sound-production',
-    title: 'Producción de Audio Profesional',
-    image: sonido,
+    id: 'complete-stage-production',
+    title: 'Producción Completa de Escenario',
+    image: stageProductionEvent,
     hotspots: [
       {
-        id: 'audio-system',
+        id: 'ceiling-leds',
         x: 50,
-        y: 50,
-        product: products[3],
-        icon: <Volume2 className="h-5 w-5" />
+        y: 15,
+        product: products[0],
+        icon: <Play className="h-5 w-5" />
       },
       {
-        id: 'stage-platform',
-        x: 30,
-        y: 75,
+        id: 'laser-effects',
+        x: 35,
+        y: 45,
+        product: products[2],
+        icon: <Zap className="h-5 w-5" />
+      },
+      {
+        id: 'stage-structure',
+        x: 65,
+        y: 70,
         product: products[4],
         icon: <Layers className="h-5 w-5" />
+      },
+      {
+        id: 'audio-system',
+        x: 80,
+        y: 55,
+        product: products[3],
+        icon: <Volume2 className="h-5 w-5" />
       }
     ]
   }
