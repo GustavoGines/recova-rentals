@@ -239,7 +239,7 @@ export const ProductsSection = ({ onAddToCart }: ProductsSectionProps) => {
   };
 
   return (
-    <section id="productos" className="py-20 bg-gradient-to-b from-background via-background/95 to-background/90">
+    <section id="productos" className="py-20 bg-background">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center space-y-6 mb-16">

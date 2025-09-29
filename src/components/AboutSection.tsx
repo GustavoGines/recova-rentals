@@ -45,7 +45,7 @@ export const AboutSection = () => {
   ];
 
   return (
-    <section id="nosotros" className="py-20 bg-gradient-to-b from-secondary/20 to-background">
+    <section id="nosotros" className="py-20 bg-background">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center space-y-6 mb-16">
